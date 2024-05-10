@@ -12,9 +12,13 @@ $TAG = $env:TAG
 if (-not $TAG) {
     $TAG = ('{0}{1}' -f $env:VERSION, $env:SUFFIX)
 }
+
 $REPO = $env:REPO
 if (-not $REPO) {
+    Write-Host "Using default REPO value"
     $REPO = "rancher"
+} else {
+    Write-Host "Using REPO environment variable"
 }
 
 if ($TAG | Select-String -Pattern 'dirty') {
